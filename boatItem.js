@@ -7,16 +7,19 @@ const BoatItem = (props) =>{
 
     const handleNavigation=(e)=>{
         navigation.navigate('book', {
-            id:props.id
+            id:props.id,
+            name:props.name,
+            image:props.image,
+            bgColor:props.bgColor
         })
     }
 
     return (
         <Pressable onLongPress={()=>console.log("long")} onPress={handleNavigation} id={props.id} style={styles.boatWrapper}>
             <View style={styles.boatImageWrapper}>
-                <Image sharedTransitionTag="imageTag" style={styles.boatImage} source={props.image} />
+                <Image style={styles.boatImage} source={props.image} />
             </View>
-            <View sharedTransitionTag="dataTag" style={{...styles.boatData, backgroundColor:props.bgColor}}>
+            <View style={{...styles.boatData, backgroundColor:props.bgColor}}>
                 <Text style={styles.boatName}>{props?.name}</Text>
             </View>
         </Pressable>

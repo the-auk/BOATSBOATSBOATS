@@ -31,7 +31,7 @@ const BoatList = () => {
     {
       name: "Gypsea",
       id: "E",
-      bgColor:'#f3752b',
+      bgColor:'#a20021',
       image:boat1
     },
     {
@@ -55,7 +55,7 @@ const BoatList = () => {
     {
       name: "Scylla Whette",
       id: "I",
-      bgColor:'#f3752b',
+      bgColor:'#a20021',
       image:boat1
     },
   ];
@@ -64,7 +64,6 @@ const BoatList = () => {
       snapToInterval={270}
       snapToAlignment="top"
       decelerationRate={"fast"}
-      disableScrollViewPanResponder={true}
       data={boats}
       renderItem={(item) =>
           <BoatItem image={item.item.image} bgColor={item.item.bgColor} name={item.item.name} id={item.item.id} />}
