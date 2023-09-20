@@ -7,55 +7,55 @@ const BoatList = () => {
     {
       name: "Kraken",
       id: "A",
-      bgColor:'#a20021',
+      bgColor:'#c9f2c7',
       image:boat1
     },
     {
       name: "Unsinkable II",
       id: "B",
-      bgColor:'#f52f57',
+      bgColor:'#aceca1',
       image:boat2
     },
     {
       name: "Titanic",
       id: "C",
-      bgColor:'#f79d5c',
+      bgColor:'#96BE8C',
       image:boat1
     },
     {
       name: "Amazonite",
       id: "D",
-      bgColor:'#f3752b',
+      bgColor:'#629460',
       image:boat2
     },
     {
       name: "Gypsea",
       id: "E",
-      bgColor:'#a20021',
+      bgColor:'#c9f2c7',
       image:boat1
     },
     {
       name: "Fantasea",
       id: "F",
-      bgColor:'#f52f57',
+      bgColor:'#aceca1',
       image:boat2
     },
     {
       name: "Knot Today",
       id: "G",
-      bgColor:'#f79d5c',
+      bgColor:'#96BE8C',
       image:boat1
     },
     {
       name: "Catalina",
       id: "H",
-      bgColor:'#f3752b',
+      bgColor:'#629460',
       image:boat2
     },
     {
       name: "Scylla Whette",
       id: "I",
-      bgColor:'#a20021',
+      bgColor:'#c9f2c7',
       image:boat1
     },
   ];
