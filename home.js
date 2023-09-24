@@ -4,6 +4,7 @@ import BoatList from "./boatList";
 import Drawer from "./customDrawer";
 import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
 import { useState, useRef } from "react";
+
 const Home = () => {
   const moveContainer = useRef(new Animated.Value(0)).current;
   const [drawerOpen, setDrawerOpen] = useState(false);

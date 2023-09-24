@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './home';
 import BookBoat from './bookBoat';
 import MapHome from './mapHome';
-import Drawer from './Drawer';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -14,8 +13,6 @@ export default function App() {
       screenOptions={{
         headerShown:false
       }}>
-        {/* <Stack.Screen name="map" component={MapHome} /> */}
-        {/* <Stack.Screen name="drawer" options={{ gestureEnabled: false }} component={Drawer} /> */}
         <Stack.Screen name="home" options={{ gestureEnabled: false }} component={Home} />
         <Stack.Screen name="book" component={BookBoat} />
       </Stack.Navigator>

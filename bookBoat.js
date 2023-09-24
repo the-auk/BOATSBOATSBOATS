@@ -108,7 +108,24 @@ const BookBoat = ({ route, navigation }) => {
           </View>
           <View style={styles.bookingSection}>
             <DateTime />
-            <View style={styles.calendarWrapper}></View>
+            <View style={styles.pricingWrapper}>
+              <View style={styles.priceItem}>
+                <Text style={styles.priceHeading}>Boat</Text>
+                <Text style={styles.priceNumber}>149.99</Text>
+              </View>
+              <View style={styles.priceItem}>
+                <Text style={styles.priceHeading}>Life Jacket</Text>
+                <Text style={styles.priceNumber}>24.99</Text>
+              </View>
+              <View style={styles.priceItem}>
+                <Text style={styles.priceHeading}>Taxes</Text>
+                <Text style={styles.priceNumber}>14.99</Text>
+              </View>
+            </View>
+            <View style={styles.totalPrice}>
+              <Text style={styles.totalHeading}>Total</Text>
+              <Text style={styles.totalNumber}>$189.97</Text>
+            </View>
             <Pressable style={styles.bookButton}>
               <Text style={styles.reserve}>Reserve</Text>
             </Pressable>
@@ -144,7 +161,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 10,
-    paddingBottom:500,
+    paddingBottom:100,
   },
   dataHeading: {
     marginTop: -70,
@@ -159,9 +176,6 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 16,
   },
-  calendarWrapper: {
-    height: 100,
-  },
   bookButton: {
     width: "100%",
     alignItems: "center",
@@ -175,10 +189,42 @@ const styles = StyleSheet.create({
   },
   descriptionWrapper: {
     paddingVertical: 30,
+    paddingBottom:60
   },
   descriptionText: {
     opacity: 0.8,
     fontSize: 14,
   },
+  pricingWrapper:{
+    paddingVertical:30,
+  },
+  priceItem:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center'
+  },
+  priceHeading:{
+    fontWeight:'bold'
+  },
+  priceNumber:{
+    fontSize:20,
+    fontWeight:600,
+    color:'rgba(50,50,50,0.7)',
+    paddingVertical:10
+  },
+  totalPrice:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    paddingVertical:30,
+    paddingBottom:100
+  },
+  totalNumber:{
+    fontSize:24
+  },
+  totalHeading:{
+    fontSize:18,
+    fontWeight:'bold'
+  }
 });
 export default BookBoat;

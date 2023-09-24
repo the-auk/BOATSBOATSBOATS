@@ -22,7 +22,7 @@ const DateTime = () => {
               <View style={styles.inputWrapper}>
         <Pressable onPress={handleStartOpen} style={styles.inputInnerWrapper}>
         <Text style={styles.dateLabel}>Check in</Text>
-        <View style={styles.dateWrapper}>
+        <View style={{...styles.dateWrapper, borderWidth:startOpen?2:1}}>
           <Text style={styles.date}>
             {startDate.toString().substring(4, 21)}
           </Text>
@@ -30,7 +30,7 @@ const DateTime = () => {
         </Pressable>
         <Pressable onPress={handleEndOpen} style={styles.inputInnerWrapper}>
         <Text style={styles.dateLabel}>Check out</Text>
-        <View style={styles.dateWrapper} >
+        <View style={{...styles.dateWrapper, borderWidth:endOpen?2:1}} >
           <Text style={styles.date}>{endDate>startDate?endDate.toString().substring(4, 21):startDate.toString().substring(4, 21)}</Text>
         </View>
         </Pressable>
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     overflow:'hidden',
     borderColor:'black',
-    borderWidth:1
+    borderWidth:1,
+    width:160
   },
   dateLabel:{
     fontSize:16,
