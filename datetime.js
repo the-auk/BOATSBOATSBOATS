@@ -1,6 +1,7 @@
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Pressable, Text, Animated} from "react-native";
+import { State, GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
 
 const DateTime = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -45,6 +46,53 @@ const DateTime = () => {
     setEndOpen((prev) => !prev);
   };
 
+  const onGestureEvent = ({ nativeEvent }) => {
+    const dy = nativeEvent.translationY;
+    if(dy>0 && nativeEvent.state==State.ACTIVE){
+      Animated.timing(moveModal,{
+        toValue:-510-dy,
+        duration:1,
+        useNativeDriver:false
+      }).start();
+    }
+    if(nativeEvent.state==State.END){
+      console.log("true")
+    }
+  };
+
+  const handleSnap = ({nativeEvent}) =>{
+    const dy = nativeEvent.translationY;
+    const vy = nativeEvent.velocityY;
+    if(nativeEvent.state==State.END){
+      if(dy+vy>=200){
+        if(vy>100){
+          Animated.timing(moveModal,{
+            toValue:-1000,
+            duration:(500-dy)/100,
+            useNativeDriver:false
+          }).start();
+        }
+        else{
+          Animated.timing(moveModal,{
+            toValue:-1000,
+            duration:(500-dy)/vy,
+            useNativeDriver:false
+          }).start();
+        }
+        setModalOpen(false)
+        setStartOpen(false)
+        setEndOpen(false)
+      }
+      else{
+        Animated.timing(moveModal,{
+          toValue:-510,
+          duration:dy/vy,
+          useNativeDriver:false
+        }).start();
+      }
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
@@ -70,6 +118,8 @@ const DateTime = () => {
         </Pressable>
       </View>
       {modalOpen && (
+        <GestureHandlerRootView>
+          <PanGestureHandler onHandlerStateChange={handleSnap} onGestureEvent={onGestureEvent}>
           <Animated.View style={[styles.modal, {bottom:moveModal}]}>
             <View style={styles.closer}></View>
             {startOpen && (
@@ -99,6 +149,8 @@ const DateTime = () => {
               />
             )}
           </Animated.View>
+          </PanGestureHandler>
+        </GestureHandlerRootView>
         )}
     </View>
   );
@@ -125,7 +177,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderColor: "black",
     borderWidth: 1,
-    width: 160,
+    width: 165,
   },
   dateLabel: {
     fontSize: 16,
@@ -136,13 +188,13 @@ const styles = StyleSheet.create({
   modal: {
     position: "absolute",
     zIndex:99,
-    width: "100%",
+    width: 390,
+    left:-10,
     paddingTop:100,
     borderTopLeftRadius:40,
     borderTopRightRadius:40,
     height: 400,
     backgroundColor: "#ffba08",
-    left: 0,
     alignItems:'center'
   },
   closer:{

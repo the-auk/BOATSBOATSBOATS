@@ -13,6 +13,8 @@ import { GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-
 import { useEffect , useRef} from "react";
 import DateTime from "./datetime";
 import BoatImage from "./boatImage";
+import Wave from "./wave";
+
 const BookBoat = ({ route, navigation }) => {
   const { id, name, image, bgColor } = route.params;
   const [tag, setTag] = useState(id);
@@ -127,6 +129,9 @@ const BookBoat = ({ route, navigation }) => {
               <Text style={styles.totalNumber}>$189.97</Text>
             </View>
             <Pressable style={styles.bookButton}>
+              <View style={styles.buttonActiveBG}>
+                <Wave />
+              </View>
               <Text style={styles.reserve}>Reserve</Text>
             </Pressable>
           </View>
@@ -183,6 +188,15 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 8,
     backgroundColor: "#ffba08",
+    position:'relative',
+    overflow:'hidden'
+  },
+  buttonActiveBG:{
+    pointerEvents:'none',
+    position:'absolute',
+    width:'100%',
+    top:0,
+    bottom:0,
   },
   reserve:{
     fontWeight:'bold'
