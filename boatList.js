@@ -1,8 +1,13 @@
-import { FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View, StyleSheet, Animated } from "react-native";
 import BoatItem from "./boatItem";
 import boat1 from "./assets/boat1.png";
 import boat2 from "./assets/boat2.png";
+import { State, GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
+import { useState, useEffect, useRef } from "react";
+
 const BoatList = () => {
+  const skew = useRef(new Animated.Value(0)).current;
+
   const boats = [
     {
       name: "Kraken",
@@ -59,16 +64,47 @@ const BoatList = () => {
       image:boat1
     },
   ];
+
+  const handleStateChange=({nativeEvent})=>{
+    if(nativeEvent.state==State.ACTIVE || nativeEvent.state==State.BEGAN || nativeEvent.state=='long'){
+      Animated.timing(skew,{
+        toValue:1,
+        duration:200,
+        useNativeDriver:false
+      }).start();
+    }
+    if(nativeEvent.state==State.FAILED || nativeEvent.state==State.CANCELLED || nativeEvent.state==State.END){
+      setTimeout(()=>{
+        Animated.timing(skew,{
+          toValue:0,
+          duration:200,
+          useNativeDriver:false
+        }).start();
+      }, 200)
+    }
+  }
+
   return (
+    <GestureHandlerRootView>
+      <PanGestureHandler onHandlerStateChange={handleStateChange}>
     <FlatList
       snapToInterval={270}
       snapToAlignment="top"
       decelerationRate={"fast"}
       data={boats}
       renderItem={(item) =>
-          <BoatItem image={item.item.image} bgColor={item.item.bgColor} name={item.item.name} id={item.item.id} />}
+        <Animated.View style={{shadowOpacity:skew,shadowRadius:10, shadowColor:'rgba(0,0,0,0.4)', shadowOffset:{width: 0,height: 0}, perspective:1000, transform:[{rotateX:skew.interpolate(
+          {
+            inputRange: [0, 1],
+            outputRange: ['0deg', '20deg'],
+          }
+        )}]}}>
+          <BoatItem image={item.item.image} bgColor={item.item.bgColor} name={item.item.name} id={item.item.id} /></Animated.View>}
       contentContainerStyle={styles.list}
     ></FlatList>
+            
+            </PanGestureHandler>
+    </GestureHandlerRootView>
   );
 };
 const styles = StyleSheet.create({

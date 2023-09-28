@@ -16,7 +16,7 @@ const BoatItem = (props) =>{
     }
 
     return (
-        <Pressable onLongPress={()=>console.log("long")} onPress={handleNavigation} id={props.id} style={styles.boatWrapper}>
+        <Pressable onPress={handleNavigation} id={props.id} style={styles.boatWrapper}>
             <View style={styles.boatImageWrapper}>
                 <Animated.Image sharedTransitionTag={props.id} style={styles.boatImage} source={props.image} />
             </View>

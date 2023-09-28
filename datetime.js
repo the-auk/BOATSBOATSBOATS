@@ -65,9 +65,6 @@ const DateTime = () => {
         useNativeDriver:false
       }).start();
     }
-    if(nativeEvent.state==State.END){
-      console.log("true")
-    }
   };
 
   const handleSnap = ({nativeEvent}) =>{
