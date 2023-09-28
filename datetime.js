@@ -4,8 +4,18 @@ import { View, StyleSheet, Pressable, Text, Animated} from "react-native";
 import { State, GestureHandlerRootView, PanGestureHandler } from "react-native-gesture-handler";
 
 const DateTime = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(()=>{
+    let d = new Date()
+    d.setHours(d.getHours()+1)
+    d.setMinutes(0)
+    return d
+  })
+  const [endDate, setEndDate] = useState(()=>{
+    let d = new Date()
+    d.setHours(d.getHours()+2)
+    d.setMinutes(0)
+    return d
+  });
   const [startOpen, setStartOpen] = useState(false);
   const [endOpen, setEndOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
